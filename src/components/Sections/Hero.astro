@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets"
+import HeroImage from "../../images/hero-images.png"
+import HomeImage from "../../images/home.astro"
+import CocoImage from "../../images/coconut.astro"
+---
+
+<main class="hidden md:block px-2 pb-20 xl:grid xl:justify-items-center">
+    <div class="h-[90vh] grid items-center">
+        <Image src={HeroImage} alt="Pink Albatross gama de helados" class="w-full h-auto"/>
+    </div>
+    <div class="grid grid-cols-2 gap-5  px-4 lg:max-w-screen-xl lg:mx-auto ">
+        <div class="w-full h-fit">
+            <HomeImage classes="h-full w-full"/>
+        </div>
+        <div class="flex flex-col gap-4">
+            <div class="flex flex-row justify-center gap-2 items-center">
+                <h1 class="font-extrabold text-2xl lg:text-2xl xl:text-3xl tracking-tight">100% INGREDIENTES NATURALES, TAN SENCILLOS COMO DIBUJAR UN COCO.</h1>
+                <div class="max-w-[100px] ">
+                    <CocoImage />
+                </div>
+            </div>
+            <p class="text-justify text-sm leading-relaxed">Nuestros helados se elaboran únicamente con ingredientes de alta calidad que se obtienen de forma natural. <span class="font-bold"> No encontrarás ingredientes artificiales, ni colorantes, ni saborizantes.</span> Son tan naturales que puedes identificar fácilmente lo que estás disfrutando, tanto como dibujar un coco, una fresa o un mango. Conseguimos un sabor intenso gracias a la cantidad y calidad del ingrediente principal en cada helado, y una cremosidad única gracias a la mezcla de leche de coco y anacardos. Todos nuestros helados son <span class="font-bold">plant-based</span>, y no tienen gluten ni leche <span class="italic">(ni siquiera trazas)</span>.</p>
+        </div>
+    </div>
+</main>

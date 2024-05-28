@@ -1,0 +1,63 @@
+---
+import '@fontsource/libre-baskerville'
+import "@fontsource/fira-sans-extra-condensed"
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header />
+		<slot />
+		<Footer />
+	</body>
+</html>
+
+<style is:global>
+	*, *::before, *::after {
+	box-sizing: border-box;
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+		font: inherit;
+	}
+
+	html {
+		color-scheme: dark light;
+		font-family: system-ui, sans-serif;
+		background: #DF8B8E;
+		color: #20221D;
+	}
+
+	body {
+		min-height: 100vh;
+	}
+
+	p {
+		font-family: 'Libre Baskerville', sans-serif;
+		text-wrap: pretty;
+	}
+
+	h1, h2, h3, h4 {
+		font-family: 'Fira Sans Extra Condensed', sans-serif;
+		text-wrap: balance;
+	}
+</style>

@@ -1,0 +1,19 @@
+{
+  "name": "pink-albatross-clone",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.0",
+    "@fontsource/fira-sans-extra-condensed": "^5.0.13",
+    "@fontsource/libre-baskerville": "^5.0.13",
+    "astro": "^4.8.6",
+    "tailwindcss": "^3.4.3"
+  }
+}

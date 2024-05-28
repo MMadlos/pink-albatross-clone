@@ -1,0 +1,32 @@
+---
+import LogoImage from "../images/logoCream.avif"
+import { Image } from "astro:assets"
+
+import SocialmediaIconsNav from "./SocialmediaIconsNav.astro"
+import Navigation from "./Navigation.astro"
+
+const links = ["Helados", "Nuestros ingredientes", "Nuestra historia", "Contacto", "Preguntas frecuentes"]
+
+---
+
+<footer class="bg-black text-pink pt-20 pb-10 flex flex-col items-center gap-10">
+    <div class="flex flex-col gap-10 px-8 lg:flex-row lg:gap-20">
+        <div class="flex flex-col gap-10 items-center">
+            <a href="/">
+                <Image src={LogoImage} alt="Pink Albatross Logo" class=""/>
+            </a>
+            <div class="fill-cream text-cream flex flex-row items-center gap-10 ">
+                <SocialmediaIconsNav hover="black"/>
+            </div>
+        </div>
+        <nav class="lg:grid lg:place-items-center">
+            <ul class="list-none text-center lg:text-left [&>li]:mb-2 font-libre">
+                <Navigation >
+            </ul>
+        </nav>
+    </div>
+    <div class="h-[1px] w-full bg-cream/25"></div>
+    <div class="px-8">
+        <p class="text-xs text-cream lg:text-sm ">Pink Albatross | This is a clone of the original <a href="https://pinkalbatross.com/es/" class="text-pink">website</a> created for learning purposes</p>
+    </div>
+</footer>

@@ -1,0 +1,30 @@
+---
+import ShopIcon from "../../icons/Shop.astro"
+import IcecreamIcon from "../../icons/Icecream.astro"
+
+import Button from "../Button.astro"
+---
+
+<section class="bg-black text-pink fill-pink p-10">
+    <div class="flex flex-col gap-10 md:flex-row md:gap-8 md:justify-center lg:max-w-screen-xl lg:mx-auto">
+
+        <div class="flex flex-col items-center gap-10 w-full">
+            <ShopIcon />
+            <div>
+                <h2 class="font-black uppercase text-5xl text-center tracking-tight"><span class="text-cream">Puntos</span> de venta</h2>
+                <p class=" text-cream text-center italic tracking-tighter">Encuentra tu establecimiento más cercano</p>
+            </div>
+            <Button text="Buscar" hover="cream"/>
+        </div>
+
+        <div class="hidden md:block md:w-[4px] md:bg-cream"></div>
+        
+        <div class="flex flex-col items-center gap-10 w-full">
+            <IcecreamIcon />
+            <h2 class="font-bold uppercase text-5xl text-center"><span class="text-cream">Conoce</span> nuestra gama</h2>
+
+            <Button text="Ver más" link="/sabores" hover="cream"/>
+        </div>
+        
+    </div>
+</section>

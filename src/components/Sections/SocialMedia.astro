@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets"
+import Button from "../Button.astro"
+
+import SMImage1 from "../../images/socialmedia/socialmedia1.jpg"
+import SMImage2 from "../../images/socialmedia/socialmedia2.jpg"
+import SMImage3 from "../../images/socialmedia/socialmedia3.jpg"
+import SMImage4 from "../../images/socialmedia/socialmedia4.jpg"
+import SMImage5 from "../../images/socialmedia/socialmedia5.jpg"
+import SMImage6 from "../../images/socialmedia/socialmedia6.jpg"
+
+const allImages = [SMImage1, SMImage2, SMImage3, SMImage4, SMImage5, SMImage6]
+
+---
+
+<section class="bg-cream py-20 px-10 flex flex-col gap-10 lg:flex-row lg:gap-20 xl:px-32 xl:items-center xl:justify-center">
+    <div class="flex flex-col items-center text-center gap-8 lg:order-2 lg:justify-center lg:items-start lg:text-left xl:max-w-[300px]">
+        <h1 class="text-4xl font-black uppercase tracking-tight">Únete a la Pink Rebellion</h1>
+        <p>Descubre lo último sobre Pink Albatross en nuestro perfil</p>
+        <div>
+            <Button text="Ver en Intagram" hover="black"/>
+        </div>
+    </div>
+    <div class="sm:grid sm:grid-cols-3 sm:grid-row-2 lg:max-w-[50%] lg:order-1 xl:max-w-[60%] ">
+        {allImages.map(image => <Image src={image} alt="Social Media Image" class="aspect-square object-cover object-center"/>)}
+    </div>
+</section>

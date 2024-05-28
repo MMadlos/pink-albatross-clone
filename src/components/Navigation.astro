@@ -1,0 +1,16 @@
+---
+const pages = [
+    {name: "Helados", page: "/sabores"},
+    {name: "Nuestros ingredientes", page: "#"},
+    {name: "Nuestra historia", page: "#"},
+    {name: "Nuestra historia", page: "#"},
+    {name: "Contacto", page: "#"},
+]
+
+const { styles } = Astro.props
+
+---
+
+{pages.map(({name, page}) => 
+        <li class={styles}><a href={page}>{name}</a></li>
+)}

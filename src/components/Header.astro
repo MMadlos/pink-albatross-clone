@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets"
+import LOGO from "../images/logo.png"
+
+import HamburguerIcon from "../icons/Hamburguer.astro"
+import CloseIcon from "../icons/Close.astro"
+import SocialmediaIconsNav from "./SocialmediaIconsNav.astro"
+import Navigation from "./Navigation.astro"
+
+---
+
+<header class="grid grid-cols-4  p-4 gap-y-10  content-start auto-rows-min items-center justify-items-center">
+    <div class="col-start-1 col-span-3 sm:col-span-1 xl:col-span-4 xl:max-w-[280px]">
+        <a href="/">
+            <Image src={LOGO} alt="Pink Albatross Logo" class=""/>
+        </a>
+    </div>
+    <nav class="col-span-1 sm:col-span-2 justify-self-end sm:pr-4 xl:col-span-2 xl:col-start-2 xl:justify-self-center xl:w-full">
+        <div>
+            <div id="hamburguer-icon" class="p-2 rounded-full bg-black text-cream w-fit xl:hidden hover:cursor-pointer hover:opacity-50  transition-opacity">
+                <HamburguerIcon />
+            </div>
+            <div id="xs-menu" class="fixed inset-0 w-full h-full bg-pink flex flex-col gap-12 items-end opacity-0 scale-0">
+                <div id="close-menu" class="cursor-pointer hover:opacity-20 w-fit p-4 transition-opacity">
+                    <CloseIcon />
+                </div>
+                <ul class="w-full h-full pt-10">
+                    <Navigation styles="font-black text-3xl lg:text-lg font-condensed uppercase tracking-tight p-4 hover:bg-black hover:text-pink hover:cursor-pointer transition-colors"/>
+                </ul>
+            </div>
+        </div>
+
+        <ul class="hidden xl:flex justify-between ">
+            <Navigation styles="font-black text-lg font-condensed uppercase tracking-tight"/>
+        </ul>
+    </nav>
+
+    <div class="row-start-2 col-span-4 h-fit sm:row-start-1  sm:col-start-4 flex justify-center items-start gap-6 fill-black sm:items-center sm:justify-center sm:gap-4 xl:col-span-1 xl:row-start-2 xl:col-start-4">
+        <SocialmediaIconsNav/>
+    </div>
+
+</header>
+
+<style>
+    .animation-appear {
+        animation: appear 0.5s forwards;
+    }
+
+    @keyframes appear {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        10% {
+            opacity: 0;
+            transform: scale(0.7);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    body.avoid-scroll {
+        overflow-y: hidden;
+    }
+
+    @media (min-width: 1024px) {
+        body.avoid-scroll {
+            padding-right: 15px
+        }
+    }
+
+</style>
+
+<script>
+    const $hamburguerIcon = document.querySelector("#hamburguer-icon")
+    const $closeIcon = document.querySelector("#close-menu")
+    const $menu = document.querySelector("#xs-menu")
+    const $body = document.querySelector("body")
+
+    $hamburguerIcon.addEventListener("click", showMenu)
+
+    $closeIcon.addEventListener("click", hideMenu)
+
+    function showMenu() {
+        $menu.classList.remove("hidden")
+        $menu.classList.add("animation-appear")
+        $body.classList.add("avoid-scroll")
+    }
+
+    function hideMenu() {
+        $menu.classList.add("hidden")
+        $body.classList.remove("avoid-scroll")
+
+    }
+    
+</script>

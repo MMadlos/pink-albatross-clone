@@ -1,0 +1,26 @@
+---
+import InstagramIcon from "../icons/Instagram.astro"
+import LinkedinIcon from "../icons/Linkedin.astro"
+import TiktokIcon from "../icons/Tiktok.astro"
+import FacebookIcon from "../icons/Facebook.astro"
+
+
+const {hover} = Astro.props
+
+const isBgBlack = hover === "black" ? "hover:fill-black" : ""
+
+---
+
+
+<div class={`hover:bg-yellow p-2 rounded-full transition-colors hover:cursor-pointer ${isBgBlack}`}>
+    <InstagramIcon/>
+</div>
+<div class={`hover:bg-yellow p-2 rounded-full transition-colors hover:cursor-pointer ${isBgBlack}`}>
+    <LinkedinIcon />
+</div>
+<div class={`hover:bg-yellow p-2 rounded-full transition-colors hover:cursor-pointer ${isBgBlack}`}>
+    <TiktokIcon/>
+</div>
+<div class={`hover:bg-yellow p-2 rounded-full transition-colors hover:cursor-pointer ${isBgBlack}`}>
+    <FacebookIcon/>
+</div>
