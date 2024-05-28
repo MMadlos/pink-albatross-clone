@@ -1,17 +1,24 @@
 ---
-const {text, link, hover, stateDefault} = Astro.props
+const { text, link, hover, stateDefault } = Astro.props;
 
 const defaultState = {
-    black: "bg-black text-cream",
-    pink: "bg-pink text-black",
-}
+  black: "bg-black text-cream",
+  pink: "bg-pink text-black",
+};
 
 const addHover = {
-    "black": "hover:bg-black hover:text-cream",
-    "cream": "hover:bg-cream hover:text-black",
-}
+  black: "hover:bg-black hover:text-cream",
+  cream: "hover:bg-cream hover:text-black",
+};
 
-const isDefaultState = stateDefault !== undefined ? defaultState[stateDefault] : defaultState["pink"]
+const isDefaultState =
+  stateDefault !== undefined
+    ? defaultState[stateDefault]
+    : defaultState["pink"];
 ---
 
-<a href={link !== undefined ? link : "#"} class={`${isDefaultState} uppercase font-black py-2 px-8 w-full text-center rounded-full xl:w-fit font-condensed tracking-widest ${addHover[hover]}`}>{text}</a>
+<a
+  href={link !== undefined ? link : "#"}
+  class={`${isDefaultState} uppercase font-black py-2 px-8 w-full text-center rounded-full xl:w-fit font-condensed tracking-widest transition-colors ${addHover[hover]}`}
+  >{text}</a
+>

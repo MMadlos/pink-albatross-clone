@@ -19,8 +19,6 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 
 const { cardName } = entry.data;
-
-console.log(cardName.split(" ").join("-"));
 ---
 
 <Sabor frontmatter={entry.data}>

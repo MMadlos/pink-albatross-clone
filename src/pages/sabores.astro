@@ -1,17 +1,41 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import IcecreamCard from "../components/IcecreamCard.astro";
+
+import { getCollection } from "astro:content";
+const iceCreamEntries = await getCollection("icecreams");
+
+console.log(iceCreamEntries);
+
+const dataList = iceCreamEntries.map((entry) => entry.data);
+
+console.log(dataList);
 ---
 
 <Layout title="Pink Albatross Sabores">
-    <section class="mt-8 mx-3">
-        <div>
-            <div class="h-[6px] bg-black w-full"></div>
-            <h1 class="text-4xl font-black text-center py-1">Naturalmente increibles</h1>
-            <div class="h-[6px] bg-black w-full"></div>
-        </div>
-        <div class="py-10 md:grid md:grid-cols-2 md:place-items-center">
-        <IcecreamCard />
-        </div>
-    </section>
+  <section class="mt-8 mx-3">
+    <div>
+      <div class="h-[6px] bg-black w-full"></div>
+      <h1 class="text-4xl font-black text-center py-1">
+        Naturalmente increibles
+      </h1>
+      <div class="h-[6px] bg-black w-full"></div>
+    </div>
+    <div class="py-10 md:grid md:grid-cols-2 md:place-items-center">
+      {
+        dataList.map((data) => {
+          const { cardName } = data;
+          const link = cardName.split(" ").join("-");
+          return (
+            <IcecreamCard
+              name={cardName}
+              link={`/sabores/${link}`}
+              src=""
+              alt={cardName}
+            />
+          );
+        })
+      }
+    </div>
+  </section>
 </Layout>

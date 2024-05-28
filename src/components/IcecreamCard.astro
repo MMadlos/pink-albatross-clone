@@ -1,9 +1,11 @@
 ---
 import Button from "./Button.astro";
+
+const { src, alt, name, link } = Astro.props;
 ---
 
 <article class="p-10 border border-black grid place-items-center gap-4">
-  <div>Imagen</div>
-  <h2 class="text-3xl">Toasted Hazelnut 480ml</h2>
-  <Button text="Saber más" hover="cream" stateDefault="black" />
+  <img src={src} alt={alt} />
+  <h2 class="text-3xl">{name}</h2>
+  <Button text="Saber más" hover="cream" stateDefault="black" link={link} />
 </article>
