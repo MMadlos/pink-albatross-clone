@@ -5,11 +5,7 @@ import IcecreamCard from "../components/IcecreamCard.astro";
 import { getCollection } from "astro:content";
 const iceCreamEntries = await getCollection("icecreams");
 
-console.log(iceCreamEntries);
-
 const dataList = iceCreamEntries.map((entry) => entry.data);
-
-console.log(dataList);
 ---
 
 <Layout title="Pink Albatross Sabores">
@@ -24,14 +20,14 @@ console.log(dataList);
     <div class="py-10 md:grid md:grid-cols-2 md:place-items-center">
       {
         dataList.map((data) => {
-          const { cardName } = data;
+          const { cardName, img, alt } = data;
           const link = cardName.split(" ").join("-");
           return (
             <IcecreamCard
               name={cardName}
               link={`/sabores/${link}`}
-              src=""
-              alt={cardName}
+              src={img}
+              alt={alt}
             />
           );
         })

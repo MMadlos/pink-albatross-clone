@@ -29,6 +29,8 @@ nutrition:
   }
 allergens: ["Puede contener trazas de frutos de cáscara."]
 formats: ["Tarrina de 480ml"]
+img: "src/images/icecream/tarrinasXL/choco-cafe.avif"
+alt: "Tarrina de Chocolate con chips de chocolate de 480 ml"
 ---
 
 El helado de chocolate es el sabor que más nos ha costado desarrollar, pero hay quienes dicen que es el mejor sabor de todos nuestros helados. La estrella de este sabor son los trocitos de chocolate, hechos a mano por un chocolatero artesanal. No fue fácil encontrar la fórmula de un helado plant-based de chocolate que no se pudiera diferenciar de uno hecho con leche, pero, ¡creemos haberlo conseguido!

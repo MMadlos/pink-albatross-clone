@@ -20,6 +20,8 @@ const icecreamsCollections = defineCollection({
     }),
     allergens: z.array(z.string()),
     formats: z.array(z.string()),
+    img: z.string(),
+    alt: z.string(),
   }),
 });
 
