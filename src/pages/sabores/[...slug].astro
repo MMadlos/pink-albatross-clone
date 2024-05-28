@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import Sabor from "../../layouts/Sabor.astro";
+
+export async function getStaticPaths() {
+  const icecreamEntries = await getCollection("icecreams");
+  return icecreamEntries.map((entry) => {
+    const { cardName } = entry.data;
+    const slug = cardName.split(" ").join("-");
+
+    return {
+      params: { slug },
+      props: { entry },
+    };
+  });
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const { cardName } = entry.data;
+
+console.log(cardName.split(" ").join("-"));
+---
+
+<Sabor frontmatter={entry.data}>
+  <Content />
+</Sabor>

@@ -24,6 +24,6 @@ const icecreamsCollections = defineCollection({
 });
 
 export const collection = {
-  ingredients: ingredientsCollections,
   icecreams: icecreamsCollections,
+  ingredients: ingredientsCollections,
 };

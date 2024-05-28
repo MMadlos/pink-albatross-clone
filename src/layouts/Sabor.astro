@@ -1,0 +1,18 @@
+---
+import Layout from "./Layout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.cardName}>
+  <main>
+    <h1>{frontmatter.title}</h1>
+    <h2>{frontmatter.subtitle}</h2>
+    <slot />
+  </main>
+  <section>
+    <h3>Ingredientes</h3>
+    <h3>Valores nutricionales (por 100 gr)</h3>
+    <h3>Alérgenos</h3>
+    <h3>Formatos</h3>
+  </section>
+</Layout>
