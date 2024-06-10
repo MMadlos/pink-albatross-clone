@@ -10,14 +10,16 @@ const dataList = iceCreamEntries.map((entry) => entry.data);
 
 <Layout title="Pink Albatross Sabores">
   <section class="mt-8 mx-3">
-    <div>
+    <div class="xl:w-fit mx-auto">
       <div class="h-[6px] bg-black w-full"></div>
-      <h1 class="text-4xl font-black text-center py-1">
+      <h1 class="text-4xl font-black text-center py-1 xl:text-7xl">
         Naturalmente increibles
       </h1>
       <div class="h-[6px] bg-black w-full"></div>
     </div>
-    <div class="py-10 md:grid md:grid-cols-2 md:place-items-center">
+    <div
+      class="md:grid md:grid-cols-2 md:place-items-center xl:grid-cols-3 xl:py-10 xl:max-w-[1500px] xl:mx-auto"
+    >
       {
         dataList.map((data) => {
           const { cardName, img, alt } = data;

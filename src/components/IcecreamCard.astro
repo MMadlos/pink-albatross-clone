@@ -4,8 +4,12 @@ import Button from "./Button.astro";
 const { src, alt, name, link } = Astro.props;
 ---
 
-<article class="p-10 grid place-items-center gap-4 lg:p-5">
-  <img src={src} alt={alt} class="w-[165px] h-auto" />
+<article class="grid place-items-center gap-4 py-10 lg:p-5">
+  <img
+    src={src}
+    alt={alt}
+    class="w-[165px] xl:w-auto h-auto xl:max-h-[400px]"
+  />
   <h2 class="text-2xl text-center font-black leading-none max-w-[9ch]">
     {name}
   </h2>
