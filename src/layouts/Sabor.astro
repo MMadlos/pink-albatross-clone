@@ -1,16 +1,34 @@
 ---
 import Layout from "./Layout.astro";
 const { frontmatter } = Astro.props;
+
+const { img, alt, title, subtitle, ingredients } = frontmatter;
 ---
 
-<Layout title={frontmatter.cardName}>
-  <main>
-    <h1>{frontmatter.title}</h1>
-    <h2>{frontmatter.subtitle}</h2>
-    <slot />
+<Layout title={`Pink Albatross - ${frontmatter.cardName}`}>
+  <main class="flex items-center flex-col gap-8 p-8">
+    <img src={`/${img}`} alt={alt} class="w-auto h-[300px]" />
+    <div class="text-center">
+      <h1 class="text-4xl font-black">{title}</h1>
+      <h2 class="text-2xl font-black">{subtitle}</h2>
+    </div>
+    <div class="text-center text-sm leading-relaxed">
+      <slot />
+    </div>
   </main>
-  <section>
-    <h3>Ingredientes</h3>
+  <section class="bg-cream py-10 px-2">
+    <div>
+      <button class="bg-black w-full px-6 py-2">
+        <h3 class="text-pink text-left text-2xl font-black uppercase">
+          Ingredientes
+        </h3>
+      </button>
+      <div>
+        <ul>
+          {ingredients.map((ingredient) => <li>{ingredient}</li>)}
+        </ul>
+      </div>
+    </div>
     <h3>Valores nutricionales (por 100 gr)</h3>
     <h3>Alérgenos</h3>
     <h3>Formatos</h3>
