@@ -4,8 +4,16 @@ import Button from "./Button.astro";
 const { src, alt, name, link } = Astro.props;
 ---
 
-<article class="p-10 border border-black grid place-items-center gap-4">
-  <img src={src} alt={alt} />
-  <h2 class="text-3xl">{name}</h2>
-  <Button text="Saber más" hover="cream" stateDefault="black" link={link} />
+<article class="p-10 grid place-items-center gap-4 lg:p-5">
+  <img src={src} alt={alt} class="w-[165px] h-auto" />
+  <h2 class="text-2xl text-center font-black leading-none max-w-[9ch]">
+    {name}
+  </h2>
+  <Button
+    text="Saber más"
+    hover="cream"
+    stateDefault="black"
+    link={link}
+    widthStyle="fit"
+  />
 </article>
