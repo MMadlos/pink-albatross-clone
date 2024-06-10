@@ -1,5 +1,5 @@
 ---
-const { text, link, hover, stateDefault } = Astro.props;
+const { text, link, hover, stateDefault, widthStyle } = Astro.props;
 
 const defaultState = {
   black: "bg-black text-cream",
@@ -15,10 +15,15 @@ const isDefaultState =
   stateDefault !== undefined
     ? defaultState[stateDefault]
     : defaultState["pink"];
+
+const width_x = {
+  full: "w-full",
+  fit: "w-fit",
+};
 ---
 
 <a
   href={link !== undefined ? link : "#"}
-  class={`${isDefaultState} uppercase font-black py-2 px-8 w-full text-center rounded-full xl:w-fit font-condensed tracking-widest transition-colors ${addHover[hover]}`}
+  class={`${isDefaultState} uppercase font-black py-2 px-8 text-center rounded-full xl:w-fit font-condensed tracking-widest transition-colors ${addHover[hover]} ${width_x[widthStyle] || "w-full"}`}
   >{text}</a
 >
