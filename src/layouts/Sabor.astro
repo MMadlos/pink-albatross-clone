@@ -38,27 +38,20 @@ const nutritionText = categories.map((category, index) => {
     id="nutritional-info"
     class="bg-cream py-10 px-2 flex flex-col gap-8"
   >
-    <Dropdown text="Ingredientes" textColor="pink">
-      <ul>
-        {ingredients.map((ingredient) => <li>{ingredient}</li>)}
-      </ul>
-    </Dropdown>
+    <Dropdown
+      text="Ingredientes"
+      textColor="pink"
+      items={ingredients}
+      hidden={false}
+    />
 
-    <Dropdown text="Valores nutricionales (por 100 gr)" textColor="blue">
-      <ul>
-        {nutritionText.map((item) => <li>{item}</li>)}
-      </ul>
-    </Dropdown>
-    <Dropdown text="Alérgenos" textColor="yellow">
-      <ul>
-        {allergens.map((item) => <li>{item}</li>)}
-      </ul></Dropdown
-    >
-    <Dropdown text="Formatos" textColor="green">
-      <ul>
-        {formats.map((item) => <li>{item}</li>)}
-      </ul>
-    </Dropdown>
+    <Dropdown
+      text="Valores nutricionales (por 100 gr)"
+      textColor="blue"
+      items={nutritionText}
+    />
+    <Dropdown text="Alérgenos" textColor="yellow" items={allergens} />
+    <Dropdown text="Formatos" textColor="green" items={formats} />
   </section>
 
   <script>

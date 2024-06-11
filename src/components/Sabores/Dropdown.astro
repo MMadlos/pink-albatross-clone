@@ -1,5 +1,12 @@
 ---
-const { textColor, text } = Astro.props;
+interface Props {
+  items?: string[];
+  textColor: string;
+  text: string;
+  hidden?: boolean;
+}
+
+const { textColor, text, items, hidden = true } = Astro.props;
 
 const colors = {
   pink: "text-pink",
@@ -7,6 +14,8 @@ const colors = {
   yellow: "text-[#DF9960]",
   green: "text-[#8FBF83]",
 };
+
+const isHidden = hidden ? "hidden" : "";
 ---
 
 <div class="dropdown-container">
@@ -17,7 +26,17 @@ const colors = {
       {text}
     </h3>
   </button>
-  <div class="dropdown-menu hidden">
-    <slot />
+  <div class={`dropdown-menu ${isHidden}`}>
+    {
+      items === undefined ? (
+        <slot />
+      ) : (
+        <ul class="ml-4 mt-2">
+          {items.map((item) => (
+            <li class="text-sm font-libre">{`- ${item}`}</li>
+          ))}
+        </ul>
+      )
+    }
   </div>
 </div>
