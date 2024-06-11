@@ -1,10 +1,26 @@
 ---
 import Layout from "./Layout.astro";
-import DropdownButton from "../components/Sabores/DropdownButton.astro";
+import Dropdown from "../components/Sabores/Dropdown.astro";
 
 const { frontmatter } = Astro.props;
 
-const { img, alt, title, subtitle, ingredients } = frontmatter;
+const {
+  img,
+  alt,
+  title,
+  subtitle,
+  ingredients,
+  nutrition,
+  allergens,
+  formats,
+} = frontmatter;
+
+const { categories, values } = nutrition;
+
+const nutritionText = categories.map((category, index) => {
+  const text = `${category}: ${values[index]}`;
+  return text;
+});
 ---
 
 <Layout title={`Pink Albatross - ${frontmatter.cardName}`}>
@@ -22,34 +38,42 @@ const { img, alt, title, subtitle, ingredients } = frontmatter;
     id="nutritional-info"
     class="bg-cream py-10 px-2 flex flex-col gap-8"
   >
-    <div id="ingredients-container" class="dropdown-container">
-      <DropdownButton text="Ingredientes" textColor="pink" />
-      <div class="dropdown-menu hidden">
-        <ul>
-          {ingredients.map((ingredient) => <li>{ingredient}</li>)}
-        </ul>
-      </div>
-    </div>
-    <DropdownButton
-      text="Valores nutricionales (por 100 gr)"
-      textColor="blue"
-    />
-    <DropdownButton text="Alérgenos" textColor="yellow" />
-    <DropdownButton text="Formatos" textColor="green" />
+    <Dropdown text="Ingredientes" textColor="pink">
+      <ul>
+        {ingredients.map((ingredient) => <li>{ingredient}</li>)}
+      </ul>
+    </Dropdown>
+
+    <Dropdown text="Valores nutricionales (por 100 gr)" textColor="blue">
+      <ul>
+        {nutritionText.map((item) => <li>{item}</li>)}
+      </ul>
+    </Dropdown>
+    <Dropdown text="Alérgenos" textColor="yellow">
+      <ul>
+        {allergens.map((item) => <li>{item}</li>)}
+      </ul></Dropdown
+    >
+    <Dropdown text="Formatos" textColor="green">
+      <ul>
+        {formats.map((item) => <li>{item}</li>)}
+      </ul>
+    </Dropdown>
   </section>
+
+  <script>
+    // @ts-nocheck
+
+    const $section = document.querySelector("#nutritional-info");
+    $section?.addEventListener("click", (e) => {
+      const isButton =
+        e.target.tagName === "BUTTON" || e.target.tagName === "H3";
+      if (!isButton) return;
+
+      const $dropdownContainer = e.target.closest(".dropdown-container");
+      const $dropdownMenu = $dropdownContainer.querySelector(".dropdown-menu");
+
+      $dropdownMenu.classList.toggle("hidden");
+    });
+  </script>
 </Layout>
-
-<script>
-  // @ts-nocheck
-
-  const $section = document.querySelector("#nutritional-info");
-  $section?.addEventListener("click", (e) => {
-    const isButton = e.target.tagName === "BUTTON" || e.target.tagName === "H3";
-    if (!isButton) return;
-
-    const $dropdownContainer = e.target.closest(".dropdown-container");
-    const $dropdownMenu = $dropdownContainer.querySelector(".dropdown-menu");
-
-    $dropdownMenu.classList.toggle("hidden");
-  });
-</script>
