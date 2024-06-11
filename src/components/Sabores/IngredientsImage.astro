@@ -1,19 +1,53 @@
 ---
 import LecheDeCoco from "../../images/ingredients/leche-de-coco.astro";
 import PastaDeAnacardos from "../../images/ingredients/pasta-de-anacardos.astro";
+import AceiteDeCoco from "../../images/ingredients/aceite-de-coco.astro";
+import Azucar from "../../images/ingredients/azucar.astro";
+import ChipsDeChocolate from "../../images/ingredients/chips-de-chocolate.astro";
+import FibraCitrica from "../../images/ingredients/fibra-citrica.astro";
+import FibraDeRaizDeAchicoria from "../../images/ingredients/fibra-de-raiz-de-achicoria.astro";
+import FibrasVegetales from "../../images/ingredients/fibras-vegetales.astro";
+import GomasVegetales from "../../images/ingredients/gomas-vegetales.astro";
+import JarabeDeAzucar from "../../images/ingredients/jarabe-de-azucar.astro";
+import Pectina from "../../images/ingredients/pectina.astro";
+import PastaDeAvellanas from "../../images/ingredients/pasta-de-avellanas.astro";
 
 const { name } = Astro.props;
+
+function getComponent(componentName) {
+  switch (componentName) {
+    case "Leche de coco":
+      return LecheDeCoco;
+    case "Pasta de anacardos":
+      return PastaDeAnacardos;
+    case "Aceite de coco":
+      return AceiteDeCoco;
+    case "Azúcar":
+      return Azucar;
+    case "Chips de chocolate":
+      return ChipsDeChocolate;
+    case "Fibra cítrica":
+      return FibraCitrica;
+    case "Fibra de raíz de achicoria":
+      return FibraDeRaizDeAchicoria;
+    case "Fibras vegetales":
+      return FibrasVegetales;
+    case "Gomas vegetales":
+      return GomasVegetales;
+    case "Jarabe de azúcar":
+      return JarabeDeAzucar;
+    case "Pasta de avellanas":
+      return PastaDeAvellanas;
+    case "Pectina":
+      return Pectina;
+    default:
+      return undefined;
+  }
+}
+
+const Component = getComponent(name);
 ---
 
-<div>
-  {
-    name === "Leche de coco" && (
-      <LecheDeCoco styles="w-[100px] h-auto aspect-square" />
-    )
-  }
-  {
-    name === "Pasta de anacardos" && (
-      <PastaDeAnacardos styles="w-[100px] aspect-square" />
-    )
-  }
+<div class="has-[svg]:block hidden">
+  {Component && <Component styles="w-[100px] h-auto aspect-square" />}
 </div>
