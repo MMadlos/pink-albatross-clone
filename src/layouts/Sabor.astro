@@ -16,6 +16,8 @@ const {
   nutrition,
   allergens,
   formats,
+  imgReverso,
+  altReverso,
 } = frontmatter;
 
 const { categories, values } = nutrition;
@@ -49,47 +51,60 @@ const isOkay =
   <div class="fixed top-0 left-0 w-full bg-black text-pink">
     <span>Checker: {isOkay}</span>
   </div>
-  <main class="flex items-center flex-col gap-8 p-8">
+  <main
+    class="flex items-center flex-col gap-8 p-8 md:grid md:grid-cols-[200px_1fr] md:px-[10vw] md:mx-auto"
+  >
     <img src={`/${img}`} alt={alt} class="w-auto h-[300px]" />
-    <div class="text-center">
-      <h1 class="text-4xl font-black">{title}</h1>
-      <h2 class="text-2xl font-black">{subtitle}</h2>
-    </div>
-    <div class="text-center text-sm leading-relaxed">
-      <slot />
+    <div class="flex flex-col gap-4">
+      <div class="text-center">
+        <h1 class="text-4xl font-black uppercase md:text-6xl">{title}</h1>
+        <h2 class="text-2xl font-black">{subtitle}</h2>
+      </div>
+      <div class="text-center text-sm leading-relaxed">
+        <slot />
+      </div>
     </div>
   </main>
   <section
     id="nutritional-info"
-    class="bg-cream py-10 px-2 flex flex-col gap-8"
+    class="bg-cream pb-10 px-2 md:px-[5vw] md:grid md:grid-cols-2 md:place-items-top md:gap-8"
   >
-    <Dropdown text="Ingredientes" textColor="pink">
-      {
-        ingredientsContent.map(({ name, body }) => {
-          if (body === undefined) return;
+    <div class="h-full md:relative">
+      <img
+        src={`/${imgReverso}`}
+        alt={altReverso}
+        class="aspect-auto max-w-[240px] h-auto mx-auto md:max-w-[304px] py-12 md:sticky md:inset-0"
+      />
+    </div>
+    <div class="flex flex-col gap-8 py-12">
+      <Dropdown text="Ingredientes" textColor="pink">
+        {
+          ingredientsContent.map(({ name, body }) => {
+            if (body === undefined) return;
 
-          return (
-            <div class="my-4 px-6 mx-auto flex flex-col gap-2 ">
-              <div class="flex flex-row items-center justify-center gap-4 min-h-[100px]">
-                <IngredientsImage name={name} />
+            return (
+              <div class="my-4 px-6 mx-auto flex flex-col gap-2 ">
+                <div class="flex flex-row items-center justify-center gap-4 min-h-[100px]">
+                  <IngredientsImage name={name} />
 
-                <h4 class="text-black text-3xl font-black uppercase leading-8">
-                  {name}
-                </h4>
+                  <h4 class="text-black text-3xl font-black uppercase leading-8">
+                    {name}
+                  </h4>
+                </div>
+                <p class="text-sm">{body}</p>
               </div>
-              <p class="text-sm">{body}</p>
-            </div>
-          );
-        })
-      }
-    </Dropdown>
+            );
+          })
+        }
+      </Dropdown>
 
-    <Dropdown
-      text="Valores nutricionales (por 100 gr)"
-      textColor="blue"
-      items={nutritionText}
-    />
-    <Dropdown text="Alérgenos" textColor="yellow" items={allergens} />
-    <Dropdown text="Formatos" textColor="green" items={formats} />
+      <Dropdown
+        text="Valores nutricionales (por 100 gr)"
+        textColor="blue"
+        items={nutritionText}
+      />
+      <Dropdown text="Alérgenos" textColor="yellow" items={allergens} />
+      <Dropdown text="Formatos" textColor="green" items={formats} />
+    </div>
   </section>
 </Layout>

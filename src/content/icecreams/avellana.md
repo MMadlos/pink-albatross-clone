@@ -35,6 +35,8 @@ allergens:
 formats: ["Tarrina de 480ml", "Mini tarrina de 90ml"]
 img: "src/images/icecream/tarrinasXL/avellana.avif"
 alt: "Tarrina de Avellana toastada de 480ml"
+imgReverso: "src/images/icecream/tarrinasXL/avellana-reverso.png"
+altReverso: "Reverso de tarrina Avellana tostada de 480ml"
 ---
 
 Nos encantan las avellanas, pero es difícil encontrar helado de avellana en tiendas, y más difícil todavía encontrar helado plant-based de avellana. Así que decidimos resolverlo, usando avellanas italianas que se tuestan al punto perfecto y se funden con nuestra leche de coco y anacardos para darle a nuestro helado un delicado toque a frutos secos tostados.
