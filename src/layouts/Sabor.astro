@@ -1,6 +1,10 @@
 ---
+import { getCollection } from "astro:content";
+
 import Layout from "./Layout.astro";
 import Dropdown from "../components/Sabores/Dropdown.astro";
+import LecheDeCoco from "../images/ingredients/leche-de-coco.astro";
+import IngredientsImage from "../components/Sabores/IngredientsImage.astro";
 
 const { frontmatter } = Astro.props;
 
@@ -21,6 +25,21 @@ const nutritionText = categories.map((category, index) => {
   const text = `${category}: ${values[index]}`;
   return text;
 });
+
+// Recuperar la colección de "ingredient"
+const ingredientsEntries = await getCollection("ingredient");
+
+// Comparar si ingredients aparece en ingredientsEntries -> añadir texto
+const ingredientsContent = ingredients.map((ingredient) => {
+  const ingredientEntry = ingredientsEntries.find(
+    (entry) => entry.data.name === ingredient
+  );
+
+  const name = ingredient;
+  const body = ingredientEntry?.body;
+
+  return { name, body };
+});
 ---
 
 <Layout title={`Pink Albatross - ${frontmatter.cardName}`}>
@@ -38,12 +57,26 @@ const nutritionText = categories.map((category, index) => {
     id="nutritional-info"
     class="bg-cream py-10 px-2 flex flex-col gap-8"
   >
-    <Dropdown
-      text="Ingredientes"
-      textColor="pink"
-      items={ingredients}
-      hidden={false}
-    />
+    <Dropdown text="Ingredientes" textColor="pink" hidden={false}>
+      {
+        ingredientsContent.map(({ name, body }) => {
+          if (body === undefined) return;
+
+          return (
+            <div class="my-4 px-6 mx-auto flex flex-col gap-2 mb-10">
+              <div class="flex flex-row items-center justify-center gap-4">
+                <IngredientsImage name={name} />
+
+                <h4 class="text-black text-3xl font-black uppercase leading-8">
+                  {name}
+                </h4>
+              </div>
+              <p class="text-sm">{body}</p>
+            </div>
+          );
+        })
+      }
+    </Dropdown>
 
     <Dropdown
       text="Valores nutricionales (por 100 gr)"
