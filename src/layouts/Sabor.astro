@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 
 import Layout from "./Layout.astro";
 import Dropdown from "../components/Sabores/Dropdown.astro";
-import LecheDeCoco from "../images/ingredients/leche-de-coco.astro";
 import IngredientsImage from "../components/Sabores/IngredientsImage.astro";
 
 const { frontmatter } = Astro.props;
@@ -35,14 +34,21 @@ const ingredientsContent = ingredients.map((ingredient) => {
     (entry) => entry.data.name === ingredient
   );
 
-  const name = ingredient;
+  const name = ingredientEntry?.data.name;
   const body = ingredientEntry?.body;
 
   return { name, body };
 });
+
+//If name has an undefined value, means something is wrong. Probably not matching the name of the ingredient with the file name ingredient in .md format
+const isOkay =
+  ingredientsContent.find((data) => data.name === undefined) === undefined;
 ---
 
 <Layout title={`Pink Albatross - ${frontmatter.cardName}`}>
+  <div class="fixed top-0 left-0 w-full bg-black text-pink">
+    <span>Checker: {isOkay}</span>
+  </div>
   <main class="flex items-center flex-col gap-8 p-8">
     <img src={`/${img}`} alt={alt} class="w-auto h-[300px]" />
     <div class="text-center">
