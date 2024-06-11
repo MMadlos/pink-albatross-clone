@@ -9,22 +9,43 @@ interface Props {
 const { textColor, text, items, hidden = true } = Astro.props;
 
 const colors = {
-  pink: "text-pink",
-  blue: "text-[#7B9D94]",
-  yellow: "text-[#DF9960]",
-  green: "text-[#8FBF83]",
+  pink: "pink",
+  blue: "[#7B9D94]",
+  yellow: "[#DF9960]",
+  green: "[#8FBF83]",
 };
 
 const isHidden = hidden ? "hidden" : "";
 ---
 
 <div class="dropdown-container">
-  <button class="dropdown bg-black w-full px-6 py-2">
+  <button
+    class="group dropdown bg-black w-full px-6 py-2 flex items-center justify-between"
+    data-active="false"
+  >
     <h3
-      class={`text-left text-2xl font-black uppercase ${colors[textColor] || "text-cream"}`}
+      class={`text-left text-2xl font-black uppercase text-${colors[textColor] || "cream"}`}
     >
       {text}
     </h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      class={`size-4 fill-${colors[textColor] || "pink"} flex-shrink-0 group-data-[active="true"]:hidden`}
+    >
+      <path
+        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
+      ></path>
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      class={`size-4 fill-${colors[textColor] || "pink"} flex-shrink-0 group-data-[active=false]:hidden`}
+    >
+      <path
+        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232H328c13.3 0 24 10.7 24 24s-10.7 24-24 24H184c-13.3 0-24-10.7-24-24s10.7-24 24-24z"
+      ></path>
+    </svg>
   </button>
   <div class={`dropdown-menu ${isHidden}`}>
     {
@@ -40,3 +61,27 @@ const isHidden = hidden ? "hidden" : "";
     }
   </div>
 </div>
+
+<script>
+  // @ts-nocheck
+  const $buttonAll = document.querySelectorAll("button[data-active]");
+  $buttonAll.forEach((button) =>
+    button.addEventListener("click", (e) => {
+      toggleDropdown(e);
+      toggleIcon(e);
+    })
+  );
+
+  function toggleDropdown(e) {
+    const $dropdownContainer = e.target.closest(".dropdown-container");
+    const $dropdownMenu = $dropdownContainer.querySelector(".dropdown-menu");
+
+    $dropdownMenu.classList.toggle("hidden");
+  }
+
+  function toggleIcon(e) {
+    const $button = e.target.closest("button[data-active]");
+    const isButtonActive = $button.dataset.active === "true";
+    $button.dataset.active = isButtonActive ? "false" : "true";
+  }
+</script>

@@ -63,7 +63,7 @@ const isOkay =
     id="nutritional-info"
     class="bg-cream py-10 px-2 flex flex-col gap-8"
   >
-    <Dropdown text="Ingredientes" textColor="pink" hidden={false}>
+    <Dropdown text="Ingredientes" textColor="pink">
       {
         ingredientsContent.map(({ name, body }) => {
           if (body === undefined) return;
@@ -92,20 +92,4 @@ const isOkay =
     <Dropdown text="Alérgenos" textColor="yellow" items={allergens} />
     <Dropdown text="Formatos" textColor="green" items={formats} />
   </section>
-
-  <script>
-    // @ts-nocheck
-
-    const $section = document.querySelector("#nutritional-info");
-    $section?.addEventListener("click", (e) => {
-      const isButton =
-        e.target.tagName === "BUTTON" || e.target.tagName === "H3";
-      if (!isButton) return;
-
-      const $dropdownContainer = e.target.closest(".dropdown-container");
-      const $dropdownMenu = $dropdownContainer.querySelector(".dropdown-menu");
-
-      $dropdownMenu.classList.toggle("hidden");
-    });
-  </script>
 </Layout>
