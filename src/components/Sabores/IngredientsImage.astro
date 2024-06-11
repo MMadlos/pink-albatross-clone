@@ -5,17 +5,15 @@ import PastaDeAnacardos from "../../images/ingredients/pasta-de-anacardos.astro"
 const { name } = Astro.props;
 ---
 
-{
-  name === "Leche de coco" && (
-    <div class="">
+<div>
+  {
+    name === "Leche de coco" && (
       <LecheDeCoco styles="w-[100px] h-auto aspect-square" />
-    </div>
-  )
-}
-{
-  name === "Pasta de anacardos" && (
-    <div class="">
+    )
+  }
+  {
+    name === "Pasta de anacardos" && (
       <PastaDeAnacardos styles="w-[100px] aspect-square" />
-    </div>
-  )
-}
+    )
+  }
+</div>
